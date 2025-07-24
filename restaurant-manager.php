@@ -5,6 +5,12 @@
  * Description: Complete restaurant management system with menu display, hero slider, location finder, and custom footer. Includes professional styling, accessibility features, and easy shortcode integration.
  * Version: 1.0.2
  * Author: Khushwwant parihar
+ * 
+ * Version Management:
+ * - Update the Version field above AND the RESTAURANT_MANAGER_VERSION constant below
+ * - Assets will automatically use the new version for cache busting
+ * - In debug mode (WP_DEBUG = true), timestamps are added for immediate cache clearing
+ * - In production mode, only version numbers are used for controlled cache management
  */
 
 // Prevent direct access
@@ -13,9 +19,20 @@ if (!defined('ABSPATH')) {
 }
 
 // Define plugin constants
-define('RESTAURANT_MANAGER_VERSION', '1.0.0');
+define('RESTAURANT_MANAGER_VERSION', '1.0.2');
 define('RESTAURANT_MANAGER_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('RESTAURANT_MANAGER_PLUGIN_PATH', plugin_dir_path(__FILE__));
+
+// Enhanced version for cache busting - includes timestamp for development
+if (!defined('RESTAURANT_MANAGER_ASSET_VERSION')) {
+    if (defined('WP_DEBUG') && WP_DEBUG) {
+        // In debug mode, use timestamp for immediate cache busting during development
+        define('RESTAURANT_MANAGER_ASSET_VERSION', RESTAURANT_MANAGER_VERSION . '.' . filemtime(__FILE__));
+    } else {
+        // In production, use plugin version for controlled cache busting
+        define('RESTAURANT_MANAGER_ASSET_VERSION', RESTAURANT_MANAGER_VERSION);
+    }
+}
 
 class RestaurantManager {
     
@@ -65,6 +82,9 @@ class RestaurantManager {
         $this->cleanup_duplicates();
         
         $this->populate_default_data();
+        
+        // Update version information
+        $this->update_version_info();
         
         // Set activation flag
         add_option('restaurant_manager_activated', true);
@@ -856,6 +876,39 @@ class RestaurantManager {
         include RESTAURANT_MANAGER_PLUGIN_PATH . 'admin/documentation-page.php';
     }
     
+    /**
+     * Get the current asset version for cache busting
+     * @return string
+     */
+    public function get_asset_version() {
+        return RESTAURANT_MANAGER_ASSET_VERSION;
+    }
+    
+    /**
+     * Get plugin version information
+     * @return array
+     */
+    public function get_version_info() {
+        return array(
+            'plugin_version' => RESTAURANT_MANAGER_VERSION,
+            'asset_version' => RESTAURANT_MANAGER_ASSET_VERSION,
+            'debug_mode' => defined('WP_DEBUG') && WP_DEBUG,
+            'cache_busting' => defined('WP_DEBUG') && WP_DEBUG ? 'Development (timestamp)' : 'Production (version only)'
+        );
+    }
+    
+    /**
+     * Update version information in database
+     */
+    private function update_version_info() {
+        // Store current plugin version
+        update_option('restaurant_manager_version', RESTAURANT_MANAGER_VERSION);
+        update_option('restaurant_manager_asset_version', RESTAURANT_MANAGER_ASSET_VERSION);
+        
+        // Store activation timestamp for debugging
+        update_option('restaurant_manager_last_activated', current_time('mysql'));
+    }
+    
     public function restaurant_menu_shortcode($atts) {
         $atts = shortcode_atts(array(
             'category' => '',
@@ -901,13 +954,13 @@ class RestaurantManager {
         
         // Check if shortcode exists in post content or if we're on a page that might use it
         if ((is_object($post) && (has_shortcode($post->post_content, 'restaurant_menu') || has_shortcode($post->post_content, 'Find_us') || has_shortcode($post->post_content, 'hero_slider') || has_shortcode($post->post_content, 'restaurant_footer'))) || is_page() || is_single()) {
-            wp_enqueue_style('restaurant-manager-frontend', RESTAURANT_MANAGER_PLUGIN_URL . 'assets/frontend.css', array(), RESTAURANT_MANAGER_VERSION);
-            wp_enqueue_script('restaurant-manager-frontend', RESTAURANT_MANAGER_PLUGIN_URL . 'assets/frontend.js', array('jquery'), RESTAURANT_MANAGER_VERSION, true);
+            wp_enqueue_style('restaurant-manager-frontend', RESTAURANT_MANAGER_PLUGIN_URL . 'assets/frontend.css', array(), RESTAURANT_MANAGER_ASSET_VERSION);
+            wp_enqueue_script('restaurant-manager-frontend', RESTAURANT_MANAGER_PLUGIN_URL . 'assets/frontend.js', array('jquery'), RESTAURANT_MANAGER_ASSET_VERSION, true);
             
             // Enqueue hero slider specific assets if hero_slider shortcode is present
             if (is_object($post) && has_shortcode($post->post_content, 'hero_slider')) {
-                wp_enqueue_style('restaurant-hero-slider', RESTAURANT_MANAGER_PLUGIN_URL . 'assets/hero-slider.css', array(), RESTAURANT_MANAGER_VERSION);
-                wp_enqueue_script('restaurant-hero-slider', RESTAURANT_MANAGER_PLUGIN_URL . 'assets/hero-slider.js', array('jquery'), RESTAURANT_MANAGER_VERSION, true);
+                wp_enqueue_style('restaurant-hero-slider', RESTAURANT_MANAGER_PLUGIN_URL . 'assets/hero-slider.css', array(), RESTAURANT_MANAGER_ASSET_VERSION);
+                wp_enqueue_script('restaurant-hero-slider', RESTAURANT_MANAGER_PLUGIN_URL . 'assets/hero-slider.js', array('jquery'), RESTAURANT_MANAGER_ASSET_VERSION, true);
                 
                 wp_localize_script('restaurant-hero-slider', 'heroSliderConfig', array(
                     'ajax_url' => admin_url('admin-ajax.php'),
@@ -928,7 +981,7 @@ class RestaurantManager {
             $auto_replace = $wpdb->get_var($wpdb->prepare("SELECT setting_value FROM $settings_table WHERE setting_key = %s", 'footer_replace_site_footer'));
             
             if ((is_object($post) && has_shortcode($post->post_content, 'restaurant_footer')) || $auto_replace == '1') {
-                wp_enqueue_style('restaurant-footer', RESTAURANT_MANAGER_PLUGIN_URL . 'assets/footer.css', array(), RESTAURANT_MANAGER_VERSION);
+                wp_enqueue_style('restaurant-footer', RESTAURANT_MANAGER_PLUGIN_URL . 'assets/footer.css', array(), RESTAURANT_MANAGER_ASSET_VERSION);
             }
             
             wp_localize_script('restaurant-manager-frontend', 'restaurantManager', array(
@@ -949,8 +1002,8 @@ class RestaurantManager {
         // Enqueue Font Awesome 6.5.0
         wp_enqueue_style('font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css', array(), '6.5.0');
         
-        wp_enqueue_style('restaurant-manager-admin', RESTAURANT_MANAGER_PLUGIN_URL . 'assets/admin.css', array('font-awesome'), RESTAURANT_MANAGER_VERSION);
-        wp_enqueue_script('restaurant-manager-admin', RESTAURANT_MANAGER_PLUGIN_URL . 'assets/admin.js', array('jquery'), RESTAURANT_MANAGER_VERSION, true);
+        wp_enqueue_style('restaurant-manager-admin', RESTAURANT_MANAGER_PLUGIN_URL . 'assets/admin.css', array('font-awesome'), RESTAURANT_MANAGER_ASSET_VERSION);
+        wp_enqueue_script('restaurant-manager-admin', RESTAURANT_MANAGER_PLUGIN_URL . 'assets/admin.js', array('jquery'), RESTAURANT_MANAGER_ASSET_VERSION, true);
         
         wp_localize_script('restaurant-manager-admin', 'restaurantManagerAdmin', array(
             'ajax_url' => admin_url('admin-ajax.php'),

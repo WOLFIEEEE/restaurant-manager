@@ -244,6 +244,55 @@ if (isset($_GET['reset_all_data']) && $_GET['reset_all_data'] === '1') {
                     <?php endif; ?>
                 </td>
             </tr>
+            
+            <tr>
+                <th scope="row">
+                    <label>
+                        <i class="fas fa-code-branch" aria-hidden="true"></i>
+                        <?php _e('Version Information', 'restaurant-manager'); ?>
+                    </label>
+                </th>
+                <td>
+                    <?php
+                    // Get version information
+                    $version_info = array(
+                        'plugin_version' => RESTAURANT_MANAGER_VERSION,
+                        'asset_version' => RESTAURANT_MANAGER_ASSET_VERSION,
+                        'debug_mode' => defined('WP_DEBUG') && WP_DEBUG,
+                        'cache_busting' => defined('WP_DEBUG') && WP_DEBUG ? 'Development (timestamp)' : 'Production (version only)'
+                    );
+                    ?>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 15px;">
+                        <div>
+                            <p><strong><?php _e('Plugin Version:', 'restaurant-manager'); ?></strong></p>
+                            <ul style="margin-left: 20px;">
+                                <li><?php printf(__('Current: %s', 'restaurant-manager'), '<code>' . esc_html($version_info['plugin_version']) . '</code>'); ?></li>
+                                <li><?php printf(__('Asset Version: %s', 'restaurant-manager'), '<code>' . esc_html($version_info['asset_version']) . '</code>'); ?></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <p><strong><?php _e('Cache Management:', 'restaurant-manager'); ?></strong></p>
+                            <ul style="margin-left: 20px;">
+                                <li><?php printf(__('Debug Mode: %s', 'restaurant-manager'), $version_info['debug_mode'] ? '<span style="color: #d63638;">Enabled</span>' : '<span style="color: #00a32a;">Disabled</span>'); ?></li>
+                                <li><?php printf(__('Cache Busting: %s', 'restaurant-manager'), '<span style="color: ' . ($version_info['debug_mode'] ? '#d63638' : '#00a32a') . ';">' . esc_html($version_info['cache_busting']) . '</span>'); ?></li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div style="background: #e7f3ff; border: 1px solid #b3d9ff; border-radius: 4px; padding: 10px; margin-top: 10px;">
+                        <p style="margin: 0; color: #0073aa; font-size: 13px;">
+                            <i class="fas fa-info-circle" style="color: #0073aa; margin-right: 5px;"></i>
+                            <strong><?php _e('Cache Busting Info:', 'restaurant-manager'); ?></strong>
+                            <?php if ($version_info['debug_mode']): ?>
+                                <?php _e('In debug mode, assets use timestamps for immediate cache clearing during development.', 'restaurant-manager'); ?>
+                            <?php else: ?>
+                                <?php _e('In production mode, assets use plugin version numbers for controlled cache management.', 'restaurant-manager'); ?>
+                            <?php endif; ?>
+                        </p>
+                    </div>
+                </td>
+            </tr>
         </table>
     </div>
 </div>
