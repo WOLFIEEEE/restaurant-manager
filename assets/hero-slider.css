@@ -54,7 +54,7 @@
     height: 100%;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: opacity 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), visibility 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     z-index: 1;
     will-change: opacity;
 }
@@ -69,26 +69,71 @@
     z-index: 5;
     opacity: 0;
     visibility: visible;
+    transition: opacity 1.2s cubic-bezier(0.55, 0.055, 0.675, 0.19);
 }
 
 .hero-slide.transitioning-in {
     z-index: 10;
     opacity: 1;
     visibility: visible;
+    transition: opacity 1.2s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
-/* Show first slide by default before JavaScript loads - but only when not initialized */
+/* Loading states for smooth initial display */
+.hero-slider-container[data-loading="true"] {
+    background: #000;
+    position: relative;
+}
+
+.hero-slider-container[data-loading="true"]::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    margin: -20px 0 0 -20px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top: 3px solid rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    animation: hero-loading-spin 1s linear infinite;
+    z-index: 100;
+}
+
+@keyframes hero-loading-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
 .hero-slider-container[data-loading="true"] .hero-slide:first-child {
+    opacity: 0;
+    visibility: visible;
+    z-index: 10;
+    transition: opacity 1s ease-in-out;
+}
+
+.hero-slider-container[data-loading="true"] .hero-slide:first-child.loaded {
+    opacity: 1;
+}
+
+.hero-slider-container[data-loading="false"] .hero-slide:first-child {
     opacity: 1;
     visibility: visible;
     z-index: 10;
 }
 
-/* Hide first slide default visibility once JavaScript takes over */
-.hero-slider-container[data-loading="false"] .hero-slide:first-child {
+/* Smooth fade-in for controls after loading */
+.hero-slider-container[data-loading="false"] .hero-slider-controls,
+.hero-slider-container[data-loading="false"] .hero-slider-indicators,
+.hero-slider-container[data-loading="false"] .hero-slider-playpause {
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out 0.5s;
+}
+
+.hero-slider-container[data-loading="true"] .hero-slider-controls,
+.hero-slider-container[data-loading="true"] .hero-slider-indicators,
+.hero-slider-container[data-loading="true"] .hero-slider-playpause {
     opacity: 0;
-    visibility: hidden;
-    z-index: 1;
 }
 
 /* Ensure non-active slides stay hidden during transitions */
@@ -96,16 +141,6 @@
     opacity: 0 !important;
     visibility: hidden !important;
     z-index: 1 !important;
-}
-
-/* Loading state for smoother initial render */
-.hero-slider-container[data-loading="true"] .hero-slide:first-child {
-    opacity: 0;
-    transition: opacity 0.6s ease;
-}
-
-.hero-slider-container[data-loading="false"] .hero-slide:first-child {
-    opacity: 1;
 }
 
 .hero-slide[aria-hidden="true"] {
