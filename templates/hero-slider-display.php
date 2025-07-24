@@ -46,7 +46,8 @@ $total_slides = count($slider_images);
          aria-label="<?php _e('Restaurant Hero Image Carousel', 'restaurant-manager'); ?>"
          data-autoplay="<?php echo $autoplay; ?>"
          data-delay="<?php echo $autoplay_delay; ?>"
-         data-total="<?php echo $total_slides; ?>">
+         data-total="<?php echo $total_slides; ?>"
+         data-loading="true">
     
     
     <div class="hero-slider-wrapper" id="<?php echo $slider_id; ?>">

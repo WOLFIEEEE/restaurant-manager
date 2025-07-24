@@ -3,7 +3,7 @@
  * Plugin Name: Restaurant Manager
  * Plugin URI: https://github.com/restaurant-manager/restaurant-manager
  * Description: Complete restaurant management system with menu display, hero slider, location finder, and custom footer. Includes professional styling, accessibility features, and easy shortcode integration.
- * Version: 1.0.0
+ * Version: 1.0.1
  * Author: Khushwwant parihar
  */
 

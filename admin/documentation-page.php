@@ -440,7 +440,7 @@ if (!defined('ABSPATH')) {
     background: rgba(255, 255, 255, 0.2);
     padding: 6px 12px;
     border-radius: 4px;
-    font-family: 'Courier New', monospace;
+    font-family: monospace;
     font-size: 14px;
     border: 1px solid rgba(255, 255, 255, 0.3);
 }
@@ -468,7 +468,7 @@ if (!defined('ABSPATH')) {
     border-radius: 5px;
     padding: 12px 15px;
     margin: 10px 0;
-    font-family: 'Courier New', monospace;
+    font-family: monospace;
     font-size: 14px;
     position: relative;
 }

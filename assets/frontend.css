@@ -10,7 +10,7 @@
 /* Typography & Colors */
 :root {
     --menu-black: #2c2c2c;
-    --menu-gray: #7a7a7a;
+    --menu-gray: #737373;
     --menu-light-gray: #f8f8f8;
     --menu-border: #e8e8e8;
     --menu-subtle-border: #f4f4f4;
@@ -23,7 +23,6 @@
 
 /* Base Styles */
 body {
-    font-family: 'Georgia', 'Times New Roman', serif;
     line-height: 1.6;
     color: var(--menu-black);
     background: var(--menu-white);
@@ -60,7 +59,6 @@ body {
 }
 
 .hours-info-main h2 {
-    font-family: 'Georgia', serif;
     font-size: 18px;
     font-weight: bold;
     color: var(--menu-black);
@@ -112,7 +110,6 @@ body {
 
 .contact-info h3,
 .service-info h3 {
-    font-family: 'Georgia', serif;
     font-size: 15px;
     font-weight: bold;
     color: var(--menu-black);
@@ -159,7 +156,6 @@ body {
     font-style: normal;
     line-height: 1.5;
     color: var(--menu-black);
-    font-family: 'Georgia', serif;
 }
 
 .phone-numbers {
@@ -298,7 +294,6 @@ body {
 }
 
 .restaurant-menu-header h1 {
-    font-family: 'Georgia', serif;
     font-size: 42px;
     font-weight: normal;
     color: var(--menu-black);
@@ -308,7 +303,6 @@ body {
 }
 
 .restaurant-menu-header p {
-    font-family: 'Georgia', serif;
     font-size: 16px;
     color: var(--menu-gray);
     font-style: italic;
@@ -339,7 +333,6 @@ body {
 
 .search-group label, 
 .filter-group label {
-    font-family: 'Georgia', serif;
     font-size: 13px;
     font-weight: 600;
     color: var(--menu-red);
@@ -355,7 +348,6 @@ body {
     border-radius: 6px;
     background: var(--menu-white);
     color: var(--menu-black);
-    font-family: 'Georgia', serif;
     font-size: 14px;
     transition: all 0.2s ease;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
@@ -376,7 +368,6 @@ body {
 
 .filter-select option {
     padding: 8px;
-    font-family: 'Georgia', serif;
 }
 
 .clear-btn {
@@ -385,7 +376,6 @@ body {
     color: var(--menu-white);
     border: 2px solid var(--menu-red);
     border-radius: 6px;
-    font-family: 'Georgia', serif;
     font-size: 13px;
     font-weight: 600;
     cursor: pointer;
@@ -418,7 +408,6 @@ body {
     padding: 12px 20px;
     background: linear-gradient(135deg, var(--menu-green), #1e3a0e);
     color: var(--menu-white);
-    font-family: 'Georgia', serif;
     font-size: 14px;
     font-weight: 600;
     letter-spacing: 0.5px;
@@ -451,7 +440,6 @@ body {
     text-align: center;
     padding: 40px 20px;
     color: var(--menu-gray);
-    font-family: 'Georgia', serif;
     font-size: 16px;
     font-style: italic;
 }
@@ -524,7 +512,6 @@ body {
 }
 
 .section-header h2 {
-    font-family: 'Georgia', serif;
     font-size: 28px;
     font-weight: normal;
     color: var(--menu-black);
@@ -534,7 +521,6 @@ body {
 }
 
 .section-note {
-    font-family: 'Georgia', serif;
     font-size: 14px;
     color: var(--menu-gray);
     font-style: italic;
@@ -581,7 +567,6 @@ body {
     max-width: 60px;
     width: 50px;
     text-align: center;
-    font-family: 'Georgia', serif;
     font-size: 14px;
     font-weight: bold;
     color: var(--menu-gray);
@@ -619,7 +604,6 @@ body {
 
 .menu-list__item-title .item_title {
     background: var(--menu-white);
-    font-family: 'Georgia', serif;
     font-size: 19px;
     font-weight: bold;
     color: var(--menu-black);
@@ -639,7 +623,6 @@ body {
 .desc__content {
     background: var(--menu-description-bg);
     color: var(--menu-gray);
-    font-family: 'Georgia', serif;
     font-size: 13px;
     font-style: italic;
     line-height: 1.5;
@@ -675,7 +658,6 @@ body {
 
 .menu-list__item-price p {
     color: var(--menu-green);
-    font-family: 'Georgia', serif;
     font-size: 19px;
     font-weight: bold;
     margin: 0;
@@ -689,7 +671,6 @@ body {
     background: var(--menu-red);
     color: var(--menu-white);
     padding: 3px 10px;
-    font-family: 'Georgia', serif;
     font-size: 11px;
     font-weight: bold;
     border-radius: 3px;
@@ -742,7 +723,6 @@ body {
     top: -12px;
     left: 20px;
     padding: 4px 15px;
-    font-family: 'Georgia', serif;
     font-size: 12px;
     font-weight: bold;
     text-transform: uppercase;
@@ -1166,7 +1146,6 @@ body {
     max-width: 1400px;
     margin: 0 auto;
     padding: 0 50px;
-    font-family: 'Georgia', 'Times New Roman', serif;
     line-height: 1.6;
     color: var(--menu-black);
     background: var(--menu-white);
@@ -1195,7 +1174,6 @@ body {
 }
 
 .rm-findus-title {
-    font-family: 'Georgia', serif;
     font-size: 42px;
     font-weight: normal;
     color: var(--menu-black);
@@ -1252,7 +1230,6 @@ body {
 }
 
 .rm-findus-section-heading {
-    font-family: 'Georgia', serif;
     font-size: 22px;
     font-weight: normal;
     color: var(--menu-black);
@@ -1289,7 +1266,6 @@ body {
 }
 
 .rm-findus-address-line {
-    font-family: 'Georgia', serif;
     font-size: 18px;
     font-weight: bold;
     color: var(--menu-black);
@@ -1298,7 +1274,6 @@ body {
 }
 
 .rm-findus-address-city {
-    font-family: 'Georgia', serif;
     font-size: 16px;
     font-weight: 600;
     color: var(--menu-gray);
@@ -1327,7 +1302,6 @@ body {
     background: var(--menu-red);
     color: var(--menu-white);
     text-decoration: none;
-    font-family: 'Georgia', serif;
     font-weight: 600;
     transition: all 0.2s ease;
     border-radius: 0;
@@ -1360,7 +1334,6 @@ body {
 
 /* Directions Description */
 .rm-findus-directions-description {
-    font-family: 'Georgia', serif;
     font-size: 15px;
     line-height: 1.6;
     color: var(--menu-gray);
@@ -1426,7 +1399,6 @@ body {
     margin-bottom: 15px;
     display: inline-block;
     border: 2px solid var(--menu-red);
-    font-family: 'Georgia', serif;
     font-weight: 600;
 }
 
@@ -1463,7 +1435,6 @@ body {
 }
 
 .rm-findus-description-title {
-    font-family: 'Georgia', serif;
     font-size: 24px;
     font-weight: normal;
     color: var(--menu-black);
@@ -1493,7 +1464,6 @@ body {
 }
 
 .rm-findus-detail-label {
-    font-family: 'Georgia', serif;
     font-size: 14px;
     font-weight: bold;
     color: var(--menu-red);
@@ -1503,7 +1473,6 @@ body {
 }
 
 .rm-findus-detail-text {
-    font-family: 'Georgia', serif;
     font-size: 16px;
     line-height: 1.5;
     color: var(--menu-black);
@@ -1523,7 +1492,6 @@ body {
     background: var(--menu-green);
     color: var(--menu-white);
     text-decoration: none;
-    font-family: 'Georgia', serif;
     font-weight: 600;
     font-size: 16px;
     transition: all 0.2s ease;
