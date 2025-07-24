@@ -1,0 +1,527 @@
+/**
+ * Restaurant Manager - Footer Styles
+ * Matches the design with dark background and golden/orange headings
+ */
+
+/* Main Footer Container */
+.restaurant-footer {
+    background: #000000;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+.restaurant-footer-main {
+    padding: 60px 0 40px 0;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 60px;
+    align-items: start;
+}
+
+/* Logo and Contact Section */
+.footer-logo-section {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.footer-logo {
+    margin-bottom: 10px;
+}
+
+.footer-logo-image {
+    max-width: 200px;
+    height: auto;
+    filter: brightness(1.1);
+}
+
+.footer-contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.footer-contact-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.contact-label {
+    color: #d4af37;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.phone-numbers {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+}
+
+.phone-link {
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.phone-link:hover {
+    color: #d4af37;
+}
+
+.phone-separator {
+    color: #999;
+}
+
+.footer-address {
+    font-style: normal;
+    color: #ffffff;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* Social Media Icons */
+.footer-social-icons {
+    display: flex;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #8b4513;
+    color: #ffffff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.social-icon:hover {
+    background: #d4af37;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+}
+
+.social-icon-bg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.social-icon svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+}
+
+/* Footer Columns */
+.footer-columns {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 50px;
+}
+
+.footer-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.footer-column-title {
+    color: #d4af37;
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #8b4513;
+}
+
+/* Main Menu Column */
+.footer-menu-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.footer-menu-list li {
+    margin: 0;
+}
+
+.footer-menu-list a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s ease;
+    position: relative;
+    padding-left: 15px;
+}
+
+.footer-menu-list a:before {
+    content: "▶";
+    position: absolute;
+    left: 0;
+    color: #d4af37;
+    font-size: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.footer-menu-list a:hover {
+    color: #d4af37;
+}
+
+/* Business Hours Column */
+.footer-hours-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.footer-hours-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #444;
+    font-size: 15px;
+}
+
+.footer-hours-item:last-child {
+    border-bottom: none;
+}
+
+.hours-day {
+    color: #ffffff;
+    font-weight: 600;
+    min-width: 80px;
+}
+
+.hours-time {
+    color: #cccccc;
+    text-align: right;
+    flex: 1;
+}
+
+.footer-hours-item.closed .hours-time {
+    color: #ff6b6b;
+    font-weight: 600;
+}
+
+/* Promotions Column */
+.footer-promotions-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.footer-promotion-item {
+    background: #3a2b1a;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid #d4af37;
+    transition: all 0.3s ease;
+}
+
+.footer-promotion-item:hover {
+    background: #4a3b2a;
+    transform: translateX(5px);
+}
+
+.promotion-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.promotion-title {
+    color: #d4af37;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 0 8px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.promotion-desc {
+    color: #cccccc;
+    font-size: 14px;
+    margin: 0;
+    line-height: 1.4;
+}
+
+.footer-promotion-item.no-promotions {
+    background: #333333;
+    text-align: center;
+    opacity: 0.8;
+    padding: 20px 15px;
+}
+
+.footer-promotion-item.no-promotions .promotion-desc {
+    color: #FFFFFF;
+    font-style: italic;
+    margin: 0;
+}
+
+/* Footer Bottom/Copyright */
+.restaurant-footer-bottom {
+    background: #111111;
+    padding: 20px 0;
+    border-top: 1px solid #333;
+}
+
+.restaurant-footer-bottom .footer-container {
+    display: block;
+    text-align: center;
+}
+
+.footer-copyright {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    color: #999;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.copyright-text {
+    flex: 1;
+}
+
+.designed-by {
+    flex: 1;
+    text-align: right;
+}
+
+/* When designer section is not present, center the copyright text */
+.footer-copyright .copyright-text:only-child {
+    text-align: center;
+}
+
+.designed-by a {
+    color: #d4af37;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.designed-by a:hover {
+    color: #ffffff;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .footer-container {
+        grid-template-columns: 280px 1fr;
+        gap: 40px;
+    }
+    
+    .footer-columns {
+        gap: 35px;
+    }
+}
+
+@media (max-width: 768px) {
+    .restaurant-footer-main {
+        padding: 40px 0 30px 0;
+    }
+    
+    .footer-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding: 0 15px;
+    }
+    
+    .footer-logo-section {
+        text-align: center;
+        align-items: center;
+    }
+    
+    .footer-contact-info {
+        align-items: center;
+        text-align: center;
+    }
+    
+    .footer-social-icons {
+        justify-content: center;
+    }
+    
+    .footer-columns {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        text-align: center;
+    }
+    
+    .footer-hours-item {
+        justify-content: center;
+        gap: 20px;
+    }
+    
+    .hours-time {
+        text-align: center;
+    }
+    
+    .footer-copyright {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+    
+    .designed-by {
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .restaurant-footer-main {
+        padding: 30px 0 20px 0;
+    }
+    
+    .footer-container {
+        padding: 0 10px;
+        gap: 30px;
+    }
+    
+    .footer-logo-image {
+        max-width: 150px;
+    }
+    
+    .footer-columns {
+        gap: 25px;
+    }
+    
+    .footer-column-title {
+        font-size: 16px;
+    }
+    
+    .footer-menu-list a,
+    .hours-day,
+    .hours-time {
+        font-size: 14px;
+    }
+    
+    .social-icon {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .social-icon svg {
+        width: 18px;
+        height: 18px;
+    }
+    
+    .footer-promotion-item {
+        padding: 12px;
+    }
+    
+    .promotion-title {
+        font-size: 14px;
+    }
+    
+    .promotion-desc {
+        font-size: 13px;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .restaurant-footer {
+        background: #ffffff !important;
+        color: #000000 !important;
+        page-break-inside: avoid;
+    }
+    
+    .footer-social-icons,
+    .footer-promotion-item {
+        display: none;
+    }
+    
+    .footer-column-title {
+        color: #000000 !important;
+    }
+    
+    .footer-menu-list a,
+    .phone-link {
+        color: #000000 !important;
+    }
+    
+    .restaurant-footer-bottom {
+        background: #f5f5f5 !important;
+        color: #000000 !important;
+    }
+    
+    .contact-label {
+        color: #000000 !important;
+    }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+    .restaurant-footer {
+        background: #000000;
+        color: #ffffff;
+    }
+    
+    .footer-column-title,
+    .contact-label,
+    .promotion-title {
+        color: #ffff00;
+    }
+    
+    .social-icon {
+        background: #ffffff;
+        color: #000000;
+        border: 2px solid #ffffff;
+    }
+    
+    .footer-promotion-item {
+        background: #333333;
+        border-left-color: #ffff00;
+    }
+    
+    .footer-promotion-item.no-promotions {
+        background: #444444;
+        border-left-color: #ffff00;
+    }
+    
+    .restaurant-footer-bottom {
+        background: #000000;
+        border-top-color: #ffffff;
+    }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+    .social-icon,
+    .footer-promotion-item,
+    .phone-link,
+    .footer-menu-list a,
+    .designed-by a {
+        transition: none;
+    }
+    
+    .social-icon:hover,
+    .footer-promotion-item:hover {
+        transform: none;
+    }
+} 
