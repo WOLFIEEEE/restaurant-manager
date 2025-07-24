@@ -62,26 +62,40 @@
 .hero-slide.active {
     opacity: 1;
     visibility: visible;
-    z-index: 3;
+    z-index: 10;
 }
 
 .hero-slide.transitioning-out {
-    z-index: 2;
+    z-index: 5;
     opacity: 0;
     visibility: visible;
 }
 
 .hero-slide.transitioning-in {
-    z-index: 3;
+    z-index: 10;
     opacity: 1;
     visibility: visible;
 }
 
-/* Show first slide by default before JavaScript loads */
-.hero-slide:first-child {
+/* Show first slide by default before JavaScript loads - but only when not initialized */
+.hero-slider-container[data-loading="true"] .hero-slide:first-child {
     opacity: 1;
     visibility: visible;
-    z-index: 3;
+    z-index: 10;
+}
+
+/* Hide first slide default visibility once JavaScript takes over */
+.hero-slider-container[data-loading="false"] .hero-slide:first-child {
+    opacity: 0;
+    visibility: hidden;
+    z-index: 1;
+}
+
+/* Ensure non-active slides stay hidden during transitions */
+.hero-slide:not(.active):not(.transitioning-in):not(.transitioning-out) {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    z-index: 1 !important;
 }
 
 /* Loading state for smoother initial render */

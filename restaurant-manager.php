@@ -60,6 +60,10 @@ class RestaurantManager {
     
     public function activate() {
         $this->create_tables();
+        
+        // Clean any existing duplicates before populating new data
+        $this->cleanup_duplicates();
+        
         $this->populate_default_data();
         
         // Set activation flag
@@ -221,11 +225,62 @@ class RestaurantManager {
         }
     }
     
+    private function cleanup_duplicates() {
+        global $wpdb;
+        
+        $categories_table = $wpdb->prefix . 'restaurant_categories';
+        $items_table = $wpdb->prefix . 'restaurant_menu_items';
+        $slider_table = $wpdb->prefix . 'restaurant_hero_slider';
+        $settings_table = $wpdb->prefix . 'restaurant_settings';
+        
+        // Clean duplicate categories (keep the one with lowest ID)
+        $wpdb->query("
+            DELETE c1 FROM $categories_table c1
+            INNER JOIN $categories_table c2 
+            WHERE c1.id > c2.id 
+            AND c1.slug = c2.slug
+        ");
+        
+        // Clean duplicate menu items (keep the one with lowest ID)
+        $wpdb->query("
+            DELETE m1 FROM $items_table m1
+            INNER JOIN $items_table m2 
+            WHERE m1.id > m2.id 
+            AND m1.category_id = m2.category_id 
+            AND m1.name = m2.name
+        ");
+        
+        // Clean duplicate slider images (keep the one with lowest ID)
+        $wpdb->query("
+            DELETE s1 FROM $slider_table s1
+            INNER JOIN $slider_table s2 
+            WHERE s1.id > s2.id 
+            AND s1.image_url = s2.image_url
+        ");
+        
+        // Clean duplicate settings (keep the one with lowest ID)
+        $wpdb->query("
+            DELETE s1 FROM $settings_table s1
+            INNER JOIN $settings_table s2 
+            WHERE s1.id > s2.id 
+            AND s1.setting_key = s2.setting_key
+        ");
+    }
+    
     private function populate_default_data() {
         global $wpdb;
         
         $categories_table = $wpdb->prefix . 'restaurant_categories';
         $items_table = $wpdb->prefix . 'restaurant_menu_items';
+        
+        // Check if data already exists to prevent duplicates
+        $existing_categories = $wpdb->get_var("SELECT COUNT(*) FROM $categories_table");
+        $existing_items = $wpdb->get_var("SELECT COUNT(*) FROM $items_table");
+        
+        if ($existing_categories > 0 || $existing_items > 0) {
+            // Data already exists, skip population
+            return;
+        }
         
         // Default categories
         $categories = array(
@@ -294,6 +349,12 @@ class RestaurantManager {
     private function populate_default_slider_images() {
         global $wpdb;
         $slider_table = $wpdb->prefix . 'restaurant_hero_slider';
+        
+        // Check if slider images already exist
+        $existing_images = $wpdb->get_var("SELECT COUNT(*) FROM $slider_table");
+        if ($existing_images > 0) {
+            return; // Skip if images already exist
+        }
         
         // Default slider images with placeholder URLs
         $slider_images = array(

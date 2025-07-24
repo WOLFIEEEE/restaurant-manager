@@ -96,15 +96,19 @@
         }
 
         setupSlides() {
+            // Reset all slides to clean state first
             this.slides.forEach((slide, index) => {
+                // Remove any existing classes and attributes
+                slide.classList.remove('active', 'transitioning-in', 'transitioning-out');
+                slide.style.zIndex = '';
+                slide.setAttribute('aria-hidden', 'true');
+                slide.removeAttribute('aria-current');
+
+                // Set up the first slide as active
                 if (index === 0) {
                     slide.classList.add('active');
                     slide.setAttribute('aria-current', 'true');
                     slide.removeAttribute('aria-hidden');
-                } else {
-                    slide.classList.remove('active');
-                    slide.setAttribute('aria-hidden', 'true');
-                    slide.removeAttribute('aria-current');
                 }
             });
         }
@@ -191,21 +195,36 @@
         }
 
         performTransition(currentSlide, nextSlide, index) {
-            // Clear any existing transition classes
-            this.slides.forEach(slide => {
-                slide.classList.remove('transitioning-in', 'transitioning-out');
+            // Ensure all slides except current and next are completely hidden
+            this.slides.forEach((slide, slideIndex) => {
+                if (slideIndex !== this.currentSlide && slideIndex !== index) {
+                    slide.classList.remove('active', 'transitioning-in', 'transitioning-out');
+                    slide.setAttribute('aria-hidden', 'true');
+                    slide.removeAttribute('aria-current');
+                    slide.style.zIndex = '1';
+                    slide.style.opacity = '0';
+                    slide.style.visibility = 'hidden';
+                }
             });
+
+            // Clear any existing transition classes from current and next slides
+            currentSlide.classList.remove('transitioning-in', 'transitioning-out');
+            nextSlide.classList.remove('transitioning-in', 'transitioning-out');
 
             // Prepare next slide for transition
             nextSlide.classList.add('transitioning-in');
             nextSlide.removeAttribute('aria-hidden');
             nextSlide.setAttribute('aria-current', 'true');
+            nextSlide.style.zIndex = '10';
+            nextSlide.style.opacity = '';
+            nextSlide.style.visibility = '';
 
             // Start transition out for current slide
             currentSlide.classList.add('transitioning-out');
             currentSlide.classList.remove('active');
             currentSlide.setAttribute('aria-hidden', 'true');
             currentSlide.removeAttribute('aria-current');
+            currentSlide.style.zIndex = '5';
 
             // Force reflow to ensure classes are applied
             nextSlide.offsetHeight;
@@ -220,8 +239,13 @@
             setTimeout(() => {
                 // Clean up transition classes
                 currentSlide.classList.remove('transitioning-out');
+                currentSlide.style.zIndex = '';
+                currentSlide.style.opacity = '';
+                currentSlide.style.visibility = '';
+
                 nextSlide.classList.remove('transitioning-in');
                 nextSlide.classList.add('active');
+                nextSlide.style.zIndex = '';
 
                 // Reset transition state
                 this.isTransitioning = false;
